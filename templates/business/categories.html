@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+
+{% block title %}Categories - Business Listings{% endblock title %}
+
+{% block content %}
+    <div class="max-w-6xl mx-auto px-3">
+        <h2 class="text-black text-3xl font-semibold text-center">All Catgories</h2>
+        {% for cat in categories %}
+            <p><a href="{% url 'business_list' cat.slug %}">{{ cat.name }}</a></p>
+        {% endfor %}
+            
+    </div>
+{% endblock content %}
+    

@@ -21,6 +21,7 @@ class UserManager(BaseUserManager):
 
 
 class User(AbstractUser, PermissionsMixin):
+    username = None
     phone = models.CharField(max_length=15, unique=True)
     
 
