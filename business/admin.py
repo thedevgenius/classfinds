@@ -1,9 +1,10 @@
 from django.contrib import admin
-from .models import Category, Business, State, City, Attribute, AttributeType
+from .models import Category, Business, State, City, Attribute, AttributeType, Location
 # Register your models here.
 class CategoryAdmin(admin.ModelAdmin):
     list_display = ('name', 'parent')
     prepopulated_fields = {'slug': ('name',)}
+    # search_fields = ('name',)
 admin.site.register(Category, CategoryAdmin)
 
 class BusinessAdmin(admin.ModelAdmin):
@@ -11,6 +12,8 @@ class BusinessAdmin(admin.ModelAdmin):
     prepopulated_fields = {'slug': ('name',)}
     search_fields = ('name', 'owner__username', 'biz_id')
     list_filter = ('is_active', 'is_verified', 'is_featured', 'category')
+    filter_horizontal = ('categories',)
+    # autocomplete_fields = ('categories',)
 
 admin.site.register(Business, BusinessAdmin)
 
@@ -33,3 +36,10 @@ class AttributeAdmin(admin.ModelAdmin):
     list_display = ('value', 'type',)
     search_fields = ('type__name', 'value')
 admin.site.register(Attribute, AttributeAdmin)
+
+class LocationAdmin(admin.ModelAdmin):
+    list_display = ('name', 'city', 'lat', 'lng', 'geohash')
+    prepopulated_fields = {'slug': ('name',)}
+    search_fields = ('name', 'city__name', 'geohash')
+    list_filter = ('city',)
+admin.site.register(Location, LocationAdmin)
