@@ -32,7 +32,7 @@ _OFFSETS = [
     (-1,  1),  # northwest
     (-1, -1),  # southwest
 ]
-def geohash_neighbors(gh):
+def get_geohash_neighbors(gh):
     precision = len(gh)
     lat, lon = pgh.decode(gh)
 

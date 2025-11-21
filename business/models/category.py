@@ -11,6 +11,10 @@ class Category(models.Model):
     parent = models.ForeignKey('self', on_delete=models.CASCADE, null=True, blank=True, related_name='subcategories', limit_choices_to={'level': 0})
     level = models.PositiveIntegerField(default=0)
 
+    is_featured = models.BooleanField(default=False)
+    order = models.PositiveIntegerField(default=0)
+    image = models.ImageField(upload_to='category_images/', null=True, blank=True)
+
     class Meta:
         verbose_name_plural = "Categories"
 
