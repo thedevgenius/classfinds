@@ -1,0 +1,23 @@
+<div class="tutor-item p-3 lg:p-5 bg-white border border-gray-200 rounded-lg shadow">
+    <a href="{% url 'business_detail' biz.slug %}">
+        <div class="flex items-center gap-3 lg:gap-5">
+            <div class="thumbnail max-w-28 lg:max-w-52">
+                <img src="https://placehold.co/600x400" alt="" class="w-full h-48 object-cover object-top rounded-lg">
+            </div>
+            <div class="content">
+                <h3 class="text-black text-lg lg:text-2xl font-bold">{{ biz.name }}</h3>
+                <p class="text-sm lg:text-base text-zinc-600">{{ biz.location }}</p>
+                <p class="text-sm lg:text-base text-slate-800">Science, Arts, Spoken English</p>
+                <p class="text-sm lg:text-base text-gray-800"><strong>18+</strong> Years of experience</p>
+                <div class="cta flex gap-3 mt-3">
+                    <button role="button" onclick="tel:{{biz.phone}}" class="text-center cursor-pointer">
+                        <div class="size-10 mx-auto rounded-full shadow bg-white border border-gray-200 flex items-center justify-center">
+                            <i class="fa-solid fa-phone text-primary"></i>
+                        </div>
+                        <span class="text-sm text-gray-500">Call Now</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </a>
+</div>

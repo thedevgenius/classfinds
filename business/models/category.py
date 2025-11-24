@@ -8,12 +8,14 @@ class Category(models.Model):
     name = models.CharField(max_length=100, unique=True)
     slug = models.SlugField(unique=True, null=True, blank=True)
     description = models.TextField(blank=True, null=True)
-    parent = models.ForeignKey('self', on_delete=models.CASCADE, null=True, blank=True, related_name='subcategories', limit_choices_to={'level': 0})
+    parent = models.ForeignKey('self', on_delete=models.CASCADE, null=True, blank=True, related_name='children', limit_choices_to={'level': 0})
     level = models.PositiveIntegerField(default=0)
 
     is_featured = models.BooleanField(default=False)
-    order = models.PositiveIntegerField(default=0)
+    order = models.PositiveIntegerField(default=0, null=True, blank=True)
+    home_order = models.PositiveIntegerField(default=0, null=True, blank=True)
     image = models.ImageField(upload_to='category_images/', null=True, blank=True)
+    
 
     class Meta:
         verbose_name_plural = "Categories"

@@ -1,8 +1,50 @@
 $primary: #0F3A80;
 $secondary: #F8B400;
+$white: #fff;
+$black: #000;
 
 body {
     margin: 0;
     padding: 0;
     font-family: "Nunito", sans-serif;
+}
+
+.text-primary {
+    color: $primary;
+}
+.btn{
+    display: inline-block;
+    padding: 8px 20px;
+    border-radius: 10px;
+}
+.btn-primary{
+    background-color: $primary;
+    color: #fff;
+}
+.cta-btn{
+    box-shadow: 0 0 7px #949494;
+}
+
+.bx-shadow{
+    box-shadow: 0 0 5px #b7b7b7;
+}
+.chips{
+    // // border: 1px solid $primary;
+    // background: rgba($color: $primary, $alpha: );
+    // padding: 2px 5px;
+    // border-radius: 6px;
+    // position: relative;
+    // color: rgb(58, 58, 58);
+    color: $primary;
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+    &::before{
+        content: '\f2f7';
+        font-family: 'Font Awesome 6 Pro';
+        font-weight: 900;
+        color: $secondary;
+        margin-right: 3px;
+        font-size: 14px;
+    }
 }

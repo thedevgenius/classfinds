@@ -1,13 +1,28 @@
 {% extends 'base.html' %}
 
-{% block title %}Categories - Business Listings{% endblock title %}
+{% block title %}All Categories | Tutors, Coaching & Classes | Classfinds{% endblock title %}
+
+{% block body_bg %}bg-gray-200{% endblock body_bg %}
 
 {% block content %}
+    {% include 'includes/header.html' %}
     <div class="max-w-6xl mx-auto px-3">
-        <h2 class="text-black text-3xl font-semibold text-center">All Catgories</h2>
-        {% for cat in categories %}
-            <p><a href="{% url 'business_list' cat.slug %}">{{ cat.name }}</a></p>
-        {% endfor %}
+        <h2 class="text-black text-2xl lg:text-4xl font-bold text-center mt-3 lg:mt-10 mb-3 lg:mb-5">All Catgories</h2>
+
+        <div class="categories">
+            {% for parent in categories %}
+                <div class="parent-cat mb-4">
+                    <h2 class="text-primary text-xl lg:text-2xl font-semibold mb-2 lg:mb-3">{{ parent.name }}</h2>
+                    {% if parent.children.all %}
+                        <div class="grid grid-cols-2 lg:grid-cols-4 gap-3 lg:gap-4">
+                            {% for child in parent.children.all %}
+                                <a href="{% url 'business_list' child.slug %}" class="px-3 py-4 bg-white flex justify-center items-center text-center shadow-lg lg:text-lg font-semibold leading-tight rounded-lg border border-gray-200">{{ child.name }}</a>
+                            {% endfor %}
+                        </div>
+                    {% endif %}
+                </div>
+            {% endfor %}
+        </div>
             
     </div>
 {% endblock content %}

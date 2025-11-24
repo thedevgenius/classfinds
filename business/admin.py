@@ -12,7 +12,7 @@ class BusinessAdmin(admin.ModelAdmin):
     prepopulated_fields = {'slug': ('name',)}
     search_fields = ('name', 'owner__username', 'biz_id')
     list_filter = ('is_active', 'is_verified', 'is_featured', 'category')
-    filter_horizontal = ('categories',)
+    filter_horizontal = ('categories', 'attributes')
     # autocomplete_fields = ('categories',)
 
 admin.site.register(Business, BusinessAdmin)

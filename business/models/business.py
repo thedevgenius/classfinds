@@ -3,6 +3,8 @@ from account.models import User
 from django.utils.text import slugify
 from business.utils import generate_biz_id
 from .category import Category
+from .location import Location
+from .attribute import Attribute
 
 
 class Business(models.Model):
@@ -13,14 +15,19 @@ class Business(models.Model):
     description = models.TextField(blank=True, null=True)
     category = models.ForeignKey(Category, on_delete=models.SET_NULL, null=True, related_name='businesses')
     categories = models.ManyToManyField(Category, related_name='related_businesses', blank=True)
+    year_of_est = models.IntegerField(null=True, blank=True)
 
     phone = models.CharField(max_length=20, blank=True, null=True)
     alternate_phone = models.CharField(max_length=20, blank=True, null=True)
     whatsapp = models.CharField(max_length=20, blank=True, null=True)
     website = models.URLField(blank=True, null=True)
     email = models.EmailField(blank=True, null=True)
+    location = models.ForeignKey('Location', on_delete=models.CASCADE, null=True, blank=True)
+    address = models.CharField(max_length=200, blank=True, null=True)
 
     image = models.ImageField(upload_to='business_images/', blank=True, null=True)
+
+    attributes = models.ManyToManyField('Attribute', blank=True, related_name='businesses')
 
     is_active = models.BooleanField(default=True)
     is_verified = models.BooleanField(default=False)
