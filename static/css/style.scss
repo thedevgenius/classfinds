@@ -48,3 +48,13 @@ body {
         font-size: 14px;
     }
 }
+
+.modal{
+    position: fixed;
+    background: rgba($color: #000000, $alpha: 0.5);
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    z-index: 1;
+}
