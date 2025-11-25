@@ -1,12 +1,26 @@
 {% load static %}
 <footer class="bg-[#1D2026]">
-    <div class="max-w-7xl mx-auto py-4 lg:py-10">
+    <div class="max-w-7xl mx-auto px-3 py-4 lg:py-10">
         <div class="flex gap-10 justify-between">
-            <div class="w-1/4">
+            <div class="w-full lg:w-1/4">
                 <a href="{% url 'home' %}">
-                    <!-- <img src="{% static 'images/logo-white.png' %}" alt="logo" class="max-w-64"> -->
+                    <img src="{% static 'images/logo-white.png' %}" alt="logo" class="max-w-64">
                 </a>
-                <p class="text-[#8C94A3] leading-5 mt-5">Discover trusted tutors, coaching centers, and learning programs in one place.</p>
+                <p class="text-[#8C94A3] leading-5 mt-3 lg:mt-7">Discover trusted tutors, coaching centers, and learning programs in one place.</p>
+                <ul class="flex gap-3 mt-3 lg:mt-7">
+                    <li><a href="#" class="size-10 bg-[#363B47] flex justify-center items-center text-white hover:bg-[#0F3A80]"><i class="fa-brands fa-facebook-f"></i></a></li>
+                    <li><a href="#" class="size-10 bg-[#363B47] flex justify-center items-center text-white hover:bg-[#0F3A80]"><i class="fa-brands fa-instagram"></i></a></li>
+                </ul>
+            </div>
+
+            <div class="w-full lg:w-1/4">
+                <h2 class="text-white font-bold text-2xl mb-5">Quick Links</h2>
+                <ul>
+                    <li><a href="#">Home</a></li>
+                    <li><a href="#">Categories</a></li>
+                    <li><a href="#">Contact</a></li>
+                    <li><a href="#">List Your Profile</a></li>
+                </ul>
             </div>
         </div>
     </div>
