@@ -1,10 +1,10 @@
 {% load static %}
 <footer class="bg-[#1D2026]">
     <div class="max-w-7xl mx-auto px-3 py-4 lg:py-10">
-        <div class="flex gap-10 justify-between">
+        <div class="block lg:flex space-y-6 gap-10 justify-between">
             <div class="">
                 <a href="{% url 'home' %}">
-                    <img src="{% static 'images/logo-white.png' %}" alt="logo" class="max-w-64">
+                    {% comment %} <img src="{% static 'images/logo-white.png' %}" alt="logo" class="max-w-64"> {% endcomment %}
                 </a>
                 <p class="text-[#8C94A3] leading-5 mt-3 lg:mt-7">Discover trusted tutors, coaching centers, <br>and learning programs in one place.</p>
                 <ul class="flex gap-3 mt-3 lg:mt-7">
@@ -25,10 +25,10 @@
             <div class="">
                 <h2 class="text-white font-bold text-xl mb-5">Top Categories</h2>
                 <ul class="space-y-2">
-                    <li><a href="#" class="text-[#8C94A3] hover:text-white">Home</a></li>
-                    <li><a href="#" class="text-[#8C94A3] hover:text-white">Categories</a></li>
-                    <li><a href="#" class="text-[#8C94A3] hover:text-white">Contact</a></li>
-                    <li><a href="#" class="text-[#8C94A3] hover:text-white">List Your Profile</a></li>
+                    <li><a href="#" class="text-[#8C94A3] hover:text-white">Home Tutor</a></li>
+                    <li><a href="#" class="text-[#8C94A3] hover:text-white">NEET Coaching</a></li>
+                    <li><a href="#" class="text-[#8C94A3] hover:text-white">JEE Coaching</a></li>
+                    <li><a href="#" class="text-[#8C94A3] hover:text-white"></a></li>
                 </ul>
             </div>
             <div class="">

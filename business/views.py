@@ -72,4 +72,9 @@ class LocationSelectView(View):
 
         return JsonResponse({"status": "no_locations_found"})
 
-    
+class SearchView(View):
+    def get(self, request):
+        query = request.GET.get('q', '')
+        results = Category.objects.filter(models.Q(name__icontains=query) | models.Q(description__icontains=query))[:10]
+        data = [{'name': cat.name, 'slug': cat.slug} for cat in results]
+        return JsonResponse({'results': data})

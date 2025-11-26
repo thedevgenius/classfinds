@@ -24,6 +24,7 @@ $(document).ready(function () {
         $("#locsearch").focus();
     });
 
+    //Location Select2 Dropdown
     $('.locselect').select2({
         placeholder: "Select Location...",
         minimumInputLength: 1,
@@ -37,9 +38,13 @@ $(document).ready(function () {
         localStorage.setItem('selectedLocation', selectedValue);
     });
 
-    // Load saved value on page load
     const savedValue = localStorage.getItem('selectedLocation');
     if (savedValue) {
         $('.locselect').val(savedValue).trigger('change');
     }
+
+    //Search Modal
+    $(".search-btn").click(function () {
+        $("#search_input").focus();
+    });
 }); 

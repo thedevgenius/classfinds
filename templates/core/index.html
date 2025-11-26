@@ -7,6 +7,35 @@
 {% block content %}
     {% include 'includes/header.html' %}
 
+    <div class="block lg:hidden py-3 px-3">
+        <select name="" class="locselect w-full p-5">
+            <option value="">Select Location</option>
+            {% for loc in locations %}
+            <option value="{{ loc.id }}">{{ loc.name }}</option>
+            {% endfor %}
+        </select>
+        <div class="search-box relative">
+            <button role="button" data-modal-id="searchModal" class="modal-btn search-btn w-full px-3 py-2 text-gray-400 border border-gray-300 rounded-lg mt-3 outline-none font-medium bg-white bx-shadow flex items-center justify-start gap-2">
+                <i class="fa-regular fa-magnifying-glass text-primary"></i>
+                Search...
+            </button>
+        </div>
+    </div>
+
+    <div class="max-w-6xl mx-auto px-3 py-3 lg:py-12">
+        <h2 class="text-black font-bold text-3xl hidden lg:block text-center mb-5">Featured Categories</h2>
+        <div class="grid grid-cols-3 md:grid-cols-6 lg:grid-cols-9">
+            <div class="item">
+                <a href="/category/math-tutor">
+                    <figure>
+                        <img src="" alt="">
+                    </figure>
+                    <h5>Math Tutor</h5>
+                </a>
+            </div>
+        </div>
+    </div>
+
     <div class="min-h-64">
 
     </div>
