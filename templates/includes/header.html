@@ -6,16 +6,24 @@
                 <a href="{% url 'home' %}"><img src="{% static 'images/logo.png' %}" alt="Logo" class="max-w-36 lg:max-w-56"></a>
             </div>
             <div class="flex justify-end items-center gap-4">
-                <button data-modal-id="locationModal" class="modal-btn loc-btn flex items-center cursor-pointer font-medium text-lg">
+                <!-- <button data-modal-id="locationModal" class="modal-btn loc-btn flex items-center cursor-pointer font-medium text-lg">
                     <i class="fa-solid fa-location-dot text-xl mr-1 text-primary"></i>
                     Select location 
                     <i class="fa-solid fa-angle-down text-sm"></i>
-                </button>
-                <div class="relative">
-                    <i class="fa-regular fa-magnifying-glass absolute left-2 top-3 text-gray-500 hidden md:block"></i>
-                    <input type="text" placeholder="Search..." class="hidden md:block w-52 lg:w-76 p-2 pl-7 font-medium border bg-gray-100 border-gray-400 rounded-lg focus:outline-none focus:ring-1 focus:ring-blue-300">
+                </button> -->
+                <div class="hidden md:block">
+                    <select name="" class="locselect w-56 p-5">
+                        <option value="">Select Location</option>
+                        {% for loc in locations %}
+                        <option value="{{ loc.id }}">{{ loc.name }}</option>
+                        {% endfor %}
+                    </select>
                 </div>
-                <a href="#" class="btn btn-primary">List Your Profile</a>
+                <div class="relative hidden md:block">
+                    <i class="fa-regular fa-magnifying-glass absolute left-2 top-3 text-gray-500"></i>
+                    <input type="text" placeholder="Search..." class="w-52 lg:w-76 p-2 pl-7 font-medium border bg-gray-100 border-gray-400 rounded-lg focus:outline-none focus:ring-1 focus:ring-blue-300">
+                </div>
+                <a href="#" class="btn btn-primary md:!hidden lg:!inline-block">List Your Profile</a>
             </div>
         </div>
     </div>

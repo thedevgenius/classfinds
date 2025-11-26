@@ -1,7 +1,7 @@
 body {
   margin: 0;
   padding: 0;
-  font-family: "Nunito", sans-serif;
+  font-family: "Nunito", sans-serif !important;
 }
 
 .text-primary {
@@ -50,4 +50,26 @@ body {
   top: 0;
   left: 0;
   z-index: 1;
+}
+
+.select2-container .loc-select.select2-selection--single {
+  height: 42px;
+  position: relative;
+}
+.select2-container .loc-select.select2-selection--single::before {
+  content: "\f3c5";
+  font-family: "Font Awesome 6 Pro";
+  font-weight: 400;
+  position: absolute;
+  left: 8px;
+  top: 8px;
+  color: #0F3A80;
+  font-size: 18px;
+}
+.select2-container .loc-select.select2-selection--single .select2-selection__rendered {
+  line-height: 41px;
+  padding-left: 30px;
+}
+.select2-container .loc-select.select2-selection--single .select2-selection__arrow {
+  height: 42px;
 }/*# sourceMappingURL=style.css.map */

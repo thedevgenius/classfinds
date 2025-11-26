@@ -10,14 +10,12 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Nunito:ital,wght@0,200..1000;1,200..1000&display=swap" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
     <link rel="stylesheet" href="{% static 'fontawesome/css/all.css' %}">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css">
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
-    <!-- <script>
-        document.cookie = "csrftoken={{ csrf_token }}; path=/";
-    </script> -->
     {% csrf_token %}
 </head>
-<body class="{% block body_bg %}{% endblock body_bg %}">
+<body>
     <main>
         {% block content %}
         {% endblock %}
@@ -39,69 +37,7 @@
             </div>
         </div>
     </div>
-    
-
-    {% csrf_token %}
-
+    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
     <script src="{% static 'js/main.js' %}"></script>
-    <script>
-        const csrftoken = document.querySelector('[name=csrfmiddlewaretoken]').value;
-        console.log(csrftoken);
-        document.getElementById("getLocationBtn").addEventListener("click", () => {
-            if (navigator.geolocation) {
-                navigator.geolocation.getCurrentPosition(saveLocationObject, showError);
-            } else {
-                document.getElementById("output").innerText = "Geolocation is not supported!";
-            }
-        });
-
-        function saveLocationObject(position) {
-            const locationObj = {
-                lat: position.coords.latitude,
-                lng: position.coords.longitude,
-                updated_at: new Date().toISOString()
-            };
-
-            // Save as JSON object in localStorage
-            localStorage.setItem("user_location", JSON.stringify(locationObj));
-
-            $.ajax({
-                url: "/select-location/",
-                type: "POST",
-                data: JSON.stringify(locationObj),
-                contentType: "application/json",
-                headers: {
-                    "X-CSRFToken": csrftoken
-                },
-                success: function (response) {
-                    console.log("Server:", response);
-                    let data = JSON.parse(localStorage.getItem("user_location")) || {};
-                    data.location_name = response.location
-                    localStorage.setItem("user_location", JSON.stringify(data));
-                },
-                error: function (xhr) {
-                    console.error(xhr.responseText);
-                }
-            });
-        }
-
-        function getCSRFToken() {
-            let cookieValue = null;
-            let cookies = document.cookie.split(";");
-
-            for (let cookie of cookies) {
-                cookie = cookie.trim();
-                if (cookie.startsWith("csrftoken=")) {
-                    cookieValue = cookie.substring("csrftoken=".length);
-                }
-            }
-            return cookieValue;
-        }
-
-        function showError(error) {
-            document.getElementById("output").innerText =
-                "Error getting location: " + error.message;
-        }
-    </script>
 </body>
 </html>

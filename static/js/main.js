@@ -23,4 +23,23 @@ $(document).ready(function () {
     $(".loc-btn").click(function () {
         $("#locsearch").focus();
     });
+
+    $('.locselect').select2({
+        placeholder: "Select Location...",
+        minimumInputLength: 1,
+        // allowClear: true
+        selectionCssClass: 'loc-select'
+
+    });
+
+    $('.locselect').on('change', function () {
+        const selectedValue = $(this).val();
+        localStorage.setItem('selectedLocation', selectedValue);
+    });
+
+    // Load saved value on page load
+    const savedValue = localStorage.getItem('selectedLocation');
+    if (savedValue) {
+        $('.locselect').val(savedValue).trigger('change');
+    }
 }); 
