@@ -3,12 +3,11 @@
 
 {% block title %}{{biz.name}} - Quick Info, Contact, Fees | Classfinds{% endblock title %}
 
-{% block body_bg %}bg-gray-00{% endblock body_bg %}
-
 {% block content %}
     <div class="hidden lg:block">
         {% include 'includes/header.html' %}
     </div>
+
     <div class="title flex lg:hidden justify-between px-3 pt-3">
         <div class="flex items-center gap-2">
             <button class="text-xl"><i class="fa-light fa-arrow-left"></i></button>
@@ -19,8 +18,9 @@
             <button class="border border-gray-200 text-primary rounded-full size-8"><i class="fa-solid fa-share"></i></button>
         </div>
     </div>
-    <div class="max-w-6xl mx-auto px-3 py-4 lg:py-10">
-        <div class="grid lg:grid-cols-3">
+
+    <div class="max-w-6xl mx-auto px-3 pt-3 pb-6 lg:py-16">
+        <div class="grid lg:grid-cols-3 gap-6">
             <div class="lg:col-span-2">
                 <div class="border border-gray-200 rounded-lg p-3 lg:p-5 bx-shadow">
                     <img src="{% static 'images/132300.jpg' %}" alt="" class="w-full rounded-lg lg:max-h-64 object-cover object-top">
@@ -33,7 +33,7 @@
                             <p class="text-sm lg:text-base text-gray-500"><strong class="text-primary">{{ biz.year_of_est|exp_number }}+</strong> Years of experience</p>
                         {% endif %}
 
-                        <div class="cta flex gap-5 mt-3">
+                        <div class="cta flex gap-5 mt-4">
                             
                             {% if biz.phone %}
                                 <button role="button" onclick="tel:{{biz.phone}}" class="text-center cursor-pointer">
@@ -65,7 +65,7 @@
                     </div>
                 </div>
 
-                <div class="border border-gray-200 rounded-lg py-5 bx-shadow mt-3 lg:mt-5">
+                <div class="border border-gray-200 rounded-lg py-5 bx-shadow mt-4 lg:mt-5">
                     <div class="card-title border-l-[3px] border-red-600 pl-2">
                         <h3 class="text-lg font-bold">About {{ biz.name }}</h3>
                     </div>
@@ -74,7 +74,7 @@
                     </div>
                 </div>
 
-                <div class="border border-gray-200 rounded-lg py-5 bx-shadow mt-3 lg:mt-5">
+                <div class="border border-gray-200 rounded-lg py-5 bx-shadow mt-4 lg:mt-5">
                     <div class="card-title border-l-[3px] border-red-600 pl-[17px]">
                         <h3 class="text-lg font-bold">Services</h3>
                     </div>
@@ -92,7 +92,55 @@
                     </div>
                 </div>
             </div>
+
+            <div class="lg:col-span-1">
+                <div class="bg-gray-200 p-3 lg:p-5 rounded-lg space-y-3">
+                    <div class="bg-white rounded-md">
+                        <div class="py-1 px-3 rounded-md border-b border-gray-200">
+                            <h3 class="font-bold text-lg text-slate-700">Contact</h3>
+                        </div>
+                        <div class="py-2 px-3">
+                            <a href="#" class="block font-medium"><i class="fa-solid fa-phone text-primary text-sm mr-2"></i>{{ biz.phone }}</a>
+                            
+                            {% if biz.whatsapp %}
+                                {% whatsapp_url biz.whatsapp as wa_url %}
+                                <a href="{{ wa_url }}" class="block mt-3 font-medium"><i class="fa-brands fa-whatsapp text-primary mr-2"></i>{{ biz.whatsapp }}</a>
+                            {% endif %}
+                                
+                        </div>
+                    </div>
+
+                    <div class="bg-white rounded-md">
+                        <div class="title py-1 px-3 rounded-md border-b border-gray-200">
+                            <h3 class="font-bold text-lg text-slate-700">Address</h3>
+                        </div>
+                        <div class="py-2 px-3">
+                            <p class="mb-2">{{ biz.address }}</p>
+                            <a href="#" class="text-sm text-blue-600 font-semibold"><i class="fa-solid fa-arrow-turn-right"></i> Get Direction</a>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="mt-4 lg:mt-5 bg-gray-200 p-3 lg:p-5 rounded-lg ">
+                    <div class="bg-white rounded-md">
+                        <div class="py-2 px-3 border-b border-gray-300">
+                            <h3 class="text-lg font-bold text-slate-800">Send Enquery</h3>
+                        </div>
+                        <div class="py-3 px-3">
+                            <form action="" class="space-y-3">
+                                {% csrf_token %}
+                                <input type="text" name="" id="" placeholder="Name *" class="w-full px-3 py-2 rounded-md border border-gray-300 font-medium outline-none focus:border-blue-400">
+                                <input type="tel" name="" id="" placeholder="Phone Number *" class="w-full px-3 py-2 rounded-md border border-gray-300 font-medium outline-none focus:border-blue-400">
+                                <textarea name="" id="" placeholder="Message" class="w-full px-3 py-2 rounded-md border border-gray-300 font-medium outline-none focus:border-blue-400 min-h-24 resize-none"></textarea>
+                                <button type="submit" class="btn btn-primary w-full !rounded-md font-semibold cursor-pointer">Send Enquiry</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
+    
+    {% include 'includes/footer.html' %}
 {% endblock content %}
     
