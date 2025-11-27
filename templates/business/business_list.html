@@ -1,7 +1,7 @@
 {% extends 'base.html' %}
 {% load static %}
 
-{% block title %}Best {{ category.name }} near me | Classfinds{% endblock title %}
+
 
 {% block body_bg %}bg-gray-150{% endblock body_bg %}
     
@@ -23,8 +23,13 @@
     </div> -->
 
     <div class="px-3 py-3 block lg:hidden">
-        <p class="leading-none text-center mb-2"><span class="text-primary font-semibold">Location:</span> <span class="text-gray-500">Garia <i class="fa-solid fa-angle-down text-xs"></i></span></p>
-        <div class="searh-box relative">
+        <select name="" class="locselect w-full p-5">
+            <option value="">Select Location</option>
+            {% for loc in locations %}
+            <option value="{{ loc.id }}">{{ loc.name }}</option>
+            {% endfor %}
+        </select>
+        <div class="searh-box relative mt-3">
             <button class="text-primary absolute left-2 top-[9px]"><i class="fa-light fa-angle-left text-3xl"></i></button>
             <input type="text" placeholder="Search..." class="w-full bg-white border border-gray-300 pl-9 py-2 rounded-lg outline-none text-lg font-semibold" value="{{ category.name }}">
             <button class="absolute right-3 top-[11px] text-gray-600"><i class="fa-solid fa-xmark"></i></button>
@@ -32,11 +37,11 @@
     </div>
 
     <div class="filters max-w-6xl mx-auto px-3 lg:pt-10 space-y-3 lg:space-y-5">
-        <h2 class="text-3xl font-bold hidden lg:inline-block">Best {{ category.name }} in Garia </h2>
+        <h2 class="text-3xl font-bold hidden lg:inline-block">Best {{ category.name }} in <span class="locName"></span> </h2>
         <div class="flex gap-1">
             <button class="border border-gray-200 rounded-md px-2 py-1 shadow"><i class="fa-light fa-sliders"></i> <span class="font-medium">Filters</span></button>
         </div>
-        <h2 class="font-bold text-lg lg:text-xl mb-3 leading-none">10k results for your search</h2>
+        <!-- <h2 class="font-bold text-lg lg:text-xl mb-3 leading-none">10k results for your search</h2> -->
     </div>
 
     <div class="max-w-6xl mx-auto px-3 pb-3 lg:pt-3 bg-gray-200 lg:bg-transparent">
@@ -61,4 +66,39 @@
     {% include 'includes/footer.html' %}
     
 {% endblock content %}
+
+
+{% block extra_js %}
+    <script>
+        $(document).ready(function () {
+            const savedValue = localStorage.getItem('selectedLocation');
+            const locId = JSON.parse(savedValue).id;
+            $('.locselect').on('change', function () {
+                const selectedValue = $(this).val();
+                
+                $.ajax({
+                    type: "GET",
+                    url: "/select-location/",
+                    data: {
+                        'location_id': selectedValue
+                    },
+                    dataType: "json",
+                    success: function (response) {
+                        const locationData = {
+                            id: selectedValue,
+                            name: response.name,
+                        };
+                        localStorage.setItem("selectedLocation", JSON.stringify(locationData));
+                        if(locId != selectedValue){
+                            window.location.reload();
+                        }
+                        console.log("Location saved:", locationData);
+                    }
+                });
+
+            });
+        });
+    </script>
+{% endblock extra_js %}
+    
     

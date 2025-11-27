@@ -32,45 +32,55 @@ class BusinessDetailView(View):
     
 # @method_decorator(csrf_exempt, name='dispatch')
 class LocationSelectView(View):
-    def post(self, request):
-        data = json.loads(request.body.decode("utf-8"))
-        user_lat = float(data.get("lat"))
-        user_lng = float(data.get("lng"))
+    def get(self, request):
+        location_id = request.GET.get('location_id')
+        location = Location.objects.filter(id=location_id).first()
+        return JsonResponse({
+            "status": "success" if location else "not_found",
+            "name": location.name if location else None,
+            "geohash": location.geohash if location else None, 
+            "nearest_city": location.city.name if location and location.city else None,
+        })
 
-        # Haversine formula (in meters)
-        earth_radius = 6371000  # meters
+    # def post(self, request):
+    #     data = json.loads(request.body.decode("utf-8"))
+    #     user_lat = float(data.get("lat"))
+    #     user_lng = float(data.get("lng"))
 
-        nearest = (
-            Location.objects
-            .filter(lat__isnull=False, lng__isnull=False)
-            .annotate(
-                distance=
-                    earth_radius * ACos(
-                        Cos(Radians(models.F("lat"), output_field=FloatField())) *
-                        Cos(Radians(user_lat, output_field=FloatField())) *
-                        Cos(
-                            Radians(models.F("lng"), output_field=FloatField()) -
-                            Radians(user_lng, output_field=FloatField()),
-                            output_field=FloatField()
-                        ) +
-                        Sin(Radians(models.F("lat"), output_field=FloatField())) *
-                        Sin(Radians(user_lat, output_field=FloatField()))
-                    ),
-            )
-            .order_by("distance")
-            .first()
-        )
+    #     # Haversine formula (in meters)
+    #     earth_radius = 6371000  # meters
 
-        if nearest:
-            return JsonResponse({
-                "status": "success",
-                "location": nearest.name,
-                "geohash": nearest.geohash,
-                "nearest_city": nearest.city.name if nearest.city else None,
-                "distance_meters": nearest.distance
-            })
+    #     nearest = (
+    #         Location.objects
+    #         .filter(lat__isnull=False, lng__isnull=False)
+    #         .annotate(
+    #             distance=
+    #                 earth_radius * ACos(
+    #                     Cos(Radians(models.F("lat"), output_field=FloatField())) *
+    #                     Cos(Radians(user_lat, output_field=FloatField())) *
+    #                     Cos(
+    #                         Radians(models.F("lng"), output_field=FloatField()) -
+    #                         Radians(user_lng, output_field=FloatField()),
+    #                         output_field=FloatField()
+    #                     ) +
+    #                     Sin(Radians(models.F("lat"), output_field=FloatField())) *
+    #                     Sin(Radians(user_lat, output_field=FloatField()))
+    #                 ),
+    #         )
+    #         .order_by("distance")
+    #         .first()
+    #     )
 
-        return JsonResponse({"status": "no_locations_found"})
+    #     if nearest:
+    #         return JsonResponse({
+    #             "status": "success",
+    #             "location": nearest.name,
+    #             "geohash": nearest.geohash,
+    #             "nearest_city": nearest.city.name if nearest.city else None,
+    #             "distance_meters": nearest.distance
+    #         })
+
+    #     return JsonResponse({"status": "no_locations_found"})
 
 class SearchView(View):
     def get(self, request):
