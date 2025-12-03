@@ -1,10 +1,10 @@
 {% load static %}
 <footer class="bg-[#1D2026]">
-    <div class="max-w-7xl mx-auto px-3 py-4 lg:py-10">
+    <div class="max-w-7xl mx-auto px-3 py-8 lg:py-10">
         <div class="block lg:flex space-y-6 gap-10 justify-between">
             <div class="">
                 <a href="{% url 'home' %}">
-                    {% comment %} <img src="{% static 'images/logo-white.png' %}" alt="logo" class="max-w-64"> {% endcomment %}
+                    <img src="{% static 'images/logo-white.png' %}" alt="logo" class="max-w-64">
                 </a>
                 <p class="text-[#8C94A3] leading-5 mt-3 lg:mt-7">Discover trusted tutors, coaching centers, <br>and learning programs in one place.</p>
                 <ul class="flex gap-3 mt-3 lg:mt-7">
@@ -41,8 +41,8 @@
         </div>
     </div>
     <div class="py-4 border-t border-[#363B47]">
-        <div class="max-w-7xl mx-auto px-3 flex justify-between">
-            <p class="text-[#8C94A3] text-sm">&copy; <span id="year"></span> Classfinds. All rights reserved.</p>
+        <div class="max-w-7xl mx-auto px-3 block md:flex justify-between text-center">
+            <p class="text-[#8C94A3] text-sm mb-2 md:mb-0">&copy; <span id="year"></span> Classfinds. All rights reserved.</p>
             <p class="text-[#8C94A3] text-sm">Developed by <a href="#" class="text-white hover:text-blue-600">BANAVATE Technologies</a>.</p>
         </div>
     </div>

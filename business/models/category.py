@@ -15,6 +15,10 @@ class Category(models.Model):
     order = models.PositiveIntegerField(default=0, null=True, blank=True)
     home_order = models.PositiveIntegerField(default=0, null=True, blank=True)
     image = models.ImageField(upload_to='category_images/', null=True, blank=True)
+
+    meta_title = models.CharField(max_length=255, null=True, blank=True)
+    meta_description = models.TextField(null=True, blank=True)
+    meta_keywords = models.CharField(max_length=255, null=True, blank=True)
     
 
     class Meta:

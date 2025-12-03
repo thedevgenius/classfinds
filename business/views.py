@@ -2,7 +2,7 @@ from django.shortcuts import render, get_object_or_404
 from django.http import JsonResponse
 from django.db import models
 from django.views import View
-from .models import Category, Business, Location
+from .models import Category, Business, Location, Fecility
 import json
 from django.db.models import FloatField
 from django.db.models.functions import ACos, Cos, Radians, Sin
@@ -17,9 +17,20 @@ class CategoryListView(View):
     
 class BusinessListView(View):
     def get(self, request, slug):
+        location = request.GET.get('location')
+        print("Location from GET:", location)
+        
         # Placeholder for business listing logic
         category = get_object_or_404(Category, slug=slug)
         businesses = Business.objects.filter(categories=category)
+        return render(request, 'business/business_list.html', {'category': category, 'businesses': businesses})
+    
+    def post(self, request, slug):
+        location_id = request.POST.get('location_id')
+        location = get_object_or_404(Location, id=location_id)
+        # Placeholder for business listing logic
+        category = get_object_or_404(Category, slug=slug)
+        businesses = Business.objects.filter(categories=category, locations=location)
         return render(request, 'business/business_list.html', {'category': category, 'businesses': businesses})
 
 class BusinessDetailView(View):
@@ -28,7 +39,8 @@ class BusinessDetailView(View):
         grouped = {}
         for attr in business.attributes.all():
             grouped.setdefault(attr.type, []).append(attr)
-        return render(request, 'business/business_detail.html', {'biz': business, 'grouped_attributes': grouped})
+        fecilities = Fecility.objects.filter(business=business)
+        return render(request, 'business/business_detail.html', {'biz': business, 'grouped_attributes': grouped, 'fecilities': fecilities})
     
 # @method_decorator(csrf_exempt, name='dispatch')
 class LocationSelectView(View):

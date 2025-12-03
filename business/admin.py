@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Category, Business, State, City, Attribute, AttributeType, Location
+from .models import Category, Business, State, City, Attribute, AttributeType, Location, Fecility
 # Register your models here.
 class CategoryAdmin(admin.ModelAdmin):
     list_display = ('name', 'parent')
@@ -43,3 +43,8 @@ class LocationAdmin(admin.ModelAdmin):
     search_fields = ('name', 'city__name', 'geohash')
     list_filter = ('city',)
 admin.site.register(Location, LocationAdmin)
+
+class FecilityAdmin(admin.ModelAdmin):
+    list_display = ('name', 'business',)
+    search_fields = ('name', 'business__name')
+admin.site.register(Fecility, FecilityAdmin)

@@ -3,7 +3,7 @@
     <div class="max-w-7xl mx-auto px-3">
         <div class="flex justify-between items-center">
             <div class="logo">
-                <!-- <a href="{% url 'home' %}"><img src="{% static 'images/logo.png' %}" alt="Logo" class="max-w-36 lg:max-w-56"></a> -->
+                <a href="{% url 'home' %}"><img src="{% static 'images/logo.png' %}" alt="Logo" class="max-w-36 lg:max-w-56"></a>
             </div>
             <div class="flex justify-end items-center gap-4">
                 <!-- <button data-modal-id="locationModal" class="modal-btn loc-btn flex items-center cursor-pointer font-medium text-lg">
@@ -20,14 +20,14 @@
                     </select>
                 </div>
                 <div class="relative hidden md:block">
-                    <button role="button" data-modal-id="searchModal" class="modal-btn search-btn w-52 lg:w-76 p-2 pl-7 font-medium border bg-gray-100 border-gray-400 rounded-lg ">
+                    <button role="button" data-modal-id="searchModal" class="modal-btn search-btn w-52 lg:w-76 p-2 pl-8 font-medium border text-slate-500 bg-gray-50 border-gray-400 rounded-lg flex items-center justify-start gap-2 cursor-pointer">
                         <i class="fa-regular fa-magnifying-glass absolute left-2 top-3 text-gray-500"></i>
-                        Search ...
+                        Search...
                     </button>
                     <!-- <i class="fa-regular fa-magnifying-glass absolute left-2 top-3 text-gray-500"></i>
                     <input type="text" placeholder="Search..." class="w-52 lg:w-76 p-2 pl-7 font-medium border bg-gray-100 border-gray-400 rounded-lg focus:outline-none focus:ring-1 focus:ring-blue-300"> -->
                 </div>
-                <a href="#" class="md:!hidden lg:!inline-block">List Your Profile</a>
+                <a href="#" class="md:!hidden lg:!inline-block btn btn-primary">List Your Profile</a>
             </div>
         </div>
     </div>

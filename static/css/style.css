@@ -5,7 +5,7 @@ body {
 }
 
 .text-primary {
-  color: #0F3A80;
+  color: #FF6636;
 }
 
 .btn {
@@ -15,7 +15,7 @@ body {
 }
 
 .btn-primary {
-  background-color: #0F3A80;
+  background-color: #FF6636;
   color: #fff;
 }
 
@@ -28,7 +28,7 @@ body {
 }
 
 .chips {
-  color: #0F3A80;
+  color: #000;
   font-weight: 500;
   display: flex;
   align-items: center;
@@ -37,7 +37,7 @@ body {
   content: "\f2f7";
   font-family: "Font Awesome 6 Pro";
   font-weight: 900;
-  color: #F8B400;
+  color: #FF6636;
   margin-right: 3px;
   font-size: 14px;
 }
@@ -49,7 +49,7 @@ body {
   height: 100%;
   top: 0;
   left: 0;
-  z-index: 1;
+  z-index: 9999;
 }
 
 .select2-container .loc-select.select2-selection--single {
@@ -65,7 +65,7 @@ body {
   position: absolute;
   left: 8px;
   top: 6px;
-  color: #0F3A80;
+  color: #FF6636;
   font-size: 18px;
 }
 .select2-container .loc-select.select2-selection--single .select2-selection__rendered {
@@ -86,10 +86,38 @@ body {
   content: "\e09f";
   font-family: "Font Awesome 6 Pro";
   font-weight: 600;
-  color: #0F3A80;
+  color: #FF6636;
   position: absolute;
   right: 12px;
 }
 .cat-item:not(:last-child) a {
   border-bottom: 1px solid #ddd;
+}
+
+.breadcrumb li:not(:last-child)::after {
+  content: "\f105";
+  font-family: "Font Awesome 6 Pro";
+  font-weight: 900;
+  color: #666;
+  font-size: 12px;
+  margin-left: 4px;
+}
+.breadcrumb li a {
+  color: #FF6636;
+  text-decoration: none;
+}
+.breadcrumb li a:hover {
+  text-decoration: underline;
+}
+.breadcrumb li span {
+  color: #333;
+  font-weight: 600;
+}
+
+.fecility-list li::before {
+  content: "\f336";
+  font-family: "Font Awesome 6 Pro";
+  font-weight: 900;
+  color: #FF6636;
+  margin-right: 6px;
 }/*# sourceMappingURL=style.css.map */

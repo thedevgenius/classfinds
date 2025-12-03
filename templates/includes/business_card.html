@@ -1,23 +1,38 @@
-<div class="tutor-item p-3 lg:p-5 bg-white border border-gray-200 rounded-lg shadow">
-    <a href="{% url 'business_detail' biz.slug %}">
-        <div class="flex items-center gap-3 lg:gap-5">
+{% load static custom_tags %}
+
+<div class="tutor-item p-3 lg:p-5 bg-white border border-gray-200 rounded-lg shadow relative">
+    <a href="{% url 'business_detail' biz.slug %}" class="absolute top-0 left-0 block w-full h-full"></a>
+    <div class="flex items-center gap-3 lg:gap-5">
             <div class="thumbnail max-w-28 lg:max-w-52">
-                <img src="https://placehold.co/600x400" alt="" class="w-full h-48 object-cover object-top rounded-lg">
+                {% if biz.image_id %}
+                    <img src="https://drive.google.com/uc?export=view&id={{ biz.image_id }}" alt="" class="w-full h-48 object-cover object-top rounded-lg">
+                {% else %}
+                    <img src="https://placehold.co/600x400" alt="" class="w-full h-48 object-cover object-top rounded-lg">
+                {% endif %}
             </div>
             <div class="content">
                 <h3 class="text-black text-lg lg:text-2xl font-bold">{{ biz.name }}</h3>
                 <p class="text-sm lg:text-base text-zinc-600">{{ biz.location }}</p>
-                <p class="text-sm lg:text-base text-slate-800">Science, Arts, Spoken English</p>
+                <p class="text-sm lg:text-base text-slate-800">Science • Arts • Spoken English</p>
                 <p class="text-sm lg:text-base text-gray-800"><strong>18+</strong> Years of experience</p>
                 <div class="cta flex gap-3 mt-3">
-                    <button role="button" onclick="tel:{{biz.phone}}" class="text-center cursor-pointer">
+                    <button role="button" onclick="window.location.href='tel:{{ biz.phone }}'" class="text-center cursor-pointer relative z-10">
                         <div class="size-10 mx-auto rounded-full shadow bg-white border border-gray-200 flex items-center justify-center">
                             <i class="fa-solid fa-phone text-primary"></i>
                         </div>
-                        <span class="text-sm text-gray-500">Call Now</span>
+                        <span class="text-sm text-gray-700">Call Now</span>
                     </button>
+
+                    {% if biz.whatsapp %}
+                        {% whatsapp_url biz.whatsapp as wa_url %}
+                        <button role="button" onclick="window.open('{{ wa_url }}', '_blank')" class="text-center cursor-pointer relative z-10">
+                            <div class="size-10 mx-auto rounded-full bx-shadow bg-white flex items-center justify-center">
+                                <img src="{% static 'images/whatsapp.png' %}" alt="">
+                            </div>
+                            <span class="text-sm text-gray-700">Whatsapp</span>
+                        </button>
+                    {% endif %}
                 </div>
             </div>
         </div>
-    </a>
 </div>

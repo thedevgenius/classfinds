@@ -12,6 +12,7 @@ class Business(models.Model):
     owner = models.ForeignKey(User, on_delete=models.CASCADE, related_name='businesses')
     name = models.CharField(max_length=255)
     slug = models.SlugField(unique=True, null=True, blank=True)
+    tagline = models.CharField(max_length=255, blank=True, null=True)
     description = models.TextField(blank=True, null=True)
     category = models.ForeignKey(Category, on_delete=models.SET_NULL, null=True, related_name='businesses')
     categories = models.ManyToManyField(Category, related_name='related_businesses', blank=True)
@@ -22,10 +23,11 @@ class Business(models.Model):
     whatsapp = models.CharField(max_length=20, blank=True, null=True)
     website = models.URLField(blank=True, null=True)
     email = models.EmailField(blank=True, null=True)
-    location = models.ForeignKey('Location', on_delete=models.CASCADE, null=True, blank=True)
+    locations = models.ManyToManyField('Location', blank=True)
     address = models.CharField(max_length=200, blank=True, null=True)
 
     image = models.ImageField(upload_to='business_images/', blank=True, null=True)
+    image_id = models.CharField(max_length=255, blank=True, null=True)
 
     attributes = models.ManyToManyField('Attribute', blank=True, related_name='businesses')
 
@@ -59,3 +61,5 @@ class Business(models.Model):
                 counter += 1
             self.slug = slug
         super().save(*args, **kwargs)
+
+        
